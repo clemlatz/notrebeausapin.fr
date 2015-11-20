@@ -3,12 +3,18 @@
 </head>
 
 <body>
-  <h1>Welcome to Meteor!</h1>
 
-  {{> hello}}
+  <div class="main">
+    <h1 class="title">NBSP</h1>
+    {{> form}}
+  </div>
+
 </body>
 
-<template name="hello">
-  <button>Click Me</button>
-  <p>You've pressed the button {{counter}} times.</p>
+<template name="form">
+  <form>
+    <input type="number" id="red" min=0 max=255 value=0>
+    <input type="number" id="green" min=0 max=255 value=0>
+    <input type="number" id="blue" min=0 max=255 value=0>
+  </form>
 </template>

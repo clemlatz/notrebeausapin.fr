@@ -1,17 +1,37 @@
-if (Meteor.isClient) {
-  // counter starts at 0
-  Session.setDefault('counter', 0);
+Nbsp = {};
 
-  Template.hello.helpers({
+Nbsp.updateColor = function() {
+  var red = Session.get('red'),
+      green = Session.get('green'),
+      blue = Session.get('blue');
+  $('body').css({
+    'background-color': 'rgb(' + red + ', ' + green + ', ' + blue + ')'
+  });
+}
+
+if (Meteor.isClient) {
+
+  Session.setDefault('red', 0);
+  Session.setDefault('green', 0);
+  Session.setDefault('blue', 0);
+
+  Template.form.onCreated(function() {
+    Nbsp.updateColor();
+  });
+
+  Template.form.helpers({
     counter: function () {
       return Session.get('counter');
     }
   });
 
-  Template.hello.events({
-    'click button': function () {
-      // increment the counter when button is clicked
-      Session.set('counter', Session.get('counter') + 1);
+  Template.form.events({
+    'change input': function (event) {
+      Session.set(event.target.id, event.target.value)
+
+      Nbsp.updateColor();
+
+      $('')
     }
   });
 }
