@@ -1,0 +1,8 @@
+{
+  "public": {
+    "hue": {
+      "server": "192.168.0.3",
+      "username": "abcd1234"
+    }
+  }
+}
