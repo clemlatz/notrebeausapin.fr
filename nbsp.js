@@ -30,14 +30,16 @@ if (Meteor.isClient) {
       Session.set(event.target.id, event.target.value)
 
       Nbsp.updateColor();
-
-      $('')
     }
   });
 }
 
 if (Meteor.isServer) {
   Meteor.startup(function () {
-    // code to run on server at startup
+    let hueSettings = Meteor.settings.hue || Meteor.settings.public.hue;
+    if (!hueSettings) {
+      throw new Meteor.Error(500, "Hue credentials not available.");
+    }
+    Nbsp.hue = new HueBridge(hueSettings.server, hueSettings.username);
   });
 }
