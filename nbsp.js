@@ -1,5 +1,3 @@
-Nbsp = {};
-
 Nbsp.updateColor = function() {
   var red = Session.get('red'),
       green = Session.get('green'),
