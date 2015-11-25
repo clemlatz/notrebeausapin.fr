@@ -8,9 +8,7 @@ Nbsp.updateColor = function(hue) {
 
 if (Meteor.isClient) {
 
-  Session.setDefault('red', 0);
-  Session.setDefault('green', 0);
-  Session.setDefault('blue', 0);
+  Meteor.subscribe("cards");
 
   Template.form.onCreated(function() {
     Nbsp.updateColor(0);
@@ -42,6 +40,24 @@ if (Meteor.isClient) {
       });
     }
   });
+
+  Template.cards.helpers({
+    cards: function() {
+      return Nbsp.Cards.find().fetch();
+    }
+  });
+
+  Template.card.onRendered(function() {
+    var data = this.data;
+    $(this.firstNode).animate({
+      left: data.position.x + '%',
+      top: data.position.y + '%',
+    }, {
+      progress: function(animation, progress) {
+        this.style.transform = `rotate(${ progress * data.position.rotation }deg)`
+      }
+    });
+  });
 }
 
 function random(min, max)
@@ -64,11 +80,15 @@ if (Meteor.isServer) {
         x: random(0, 100),
         y: random(0, 100),
         z: random(0, 9999),
-        rotation: random(-30, 30)
+        rotation: random(0, 60) - 30
       }
       card.createdAt = new Date();
       check(card, Nbsp.CardSchema);
       Nbsp.Cards.insert(card);
     }
-  })
+  });
+
+  Meteor.publish("cards", function() {
+    return Nbsp.Cards.find();
+  });
 }

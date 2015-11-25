@@ -6,6 +6,7 @@
 <body>
 
   <div class="overlay">
+    {{> cards}}
   </div>
 
   <div class="main">
@@ -30,4 +31,18 @@
       <button type="submit" class="btn btn-default">Send card</button>
     </p>
   </form>
+</template>
+
+<template name="cards">
+  {{#each cards}}
+    {{> card}}
+  {{/each}}
+</template>
+
+<template name="card">
+  <div id="card_{{ _id }}" class="card" style="
+    background-color: hsl({{ hue }}, 75%, 50%);
+  ">
+    <p>{{ content }}</p>
+  </div>
 </template>
