@@ -4,6 +4,9 @@
 
 <body>
 
+  <div class="overlay">
+  </div>
+
   <div class="main">
     {{> form}}
   </div>
@@ -11,8 +14,9 @@
 </body>
 
 <template name="form">
-  <form>
+  <form id="cardForm">
     <p>
+      <label for="hue">Use the slide to choose a color :</label>
       <input id="hue" type="range" min=0 max=65535 value=0>
     </p>
     <p>

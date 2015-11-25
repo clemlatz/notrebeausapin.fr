@@ -32,8 +32,8 @@ Nbsp.CardPositionSchema = new SimpleSchema({
   },
   rotation: {
     type: Number,
-    min: 0,
-    max: 100
+    min: -30,
+    max: 30
   },
 });
 
