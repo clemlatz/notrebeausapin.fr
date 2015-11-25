@@ -20,3 +20,4 @@ stylus                  # Expressive, dynamic, robust CSS
 http                    # Make HTTP calls to remote servers
 iwazaru:hue             # Control Philips Hue lights with Meteor
 aldeed:simple-schema
+bootswatch:paper
