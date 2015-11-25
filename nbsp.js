@@ -1,9 +1,9 @@
-Nbsp.updateColor = function() {
-  var red = Session.get('red'),
-      green = Session.get('green'),
-      blue = Session.get('blue');
-  $('body').css({
-    'background-color': 'rgb(' + red + ', ' + green + ', ' + blue + ')'
+"use strict";
+
+Nbsp.updateColor = function(hue) {
+  let cssHue = Math.floor(parseInt(hue) / 65535 * 360);
+  $('.main').css({
+    'background-color': 'hsl(' + cssHue + ', 75%, 50%)'
   });
 }
 
@@ -24,10 +24,8 @@ if (Meteor.isClient) {
   });
 
   Template.form.events({
-    'change input': function (event) {
-      Session.set(event.target.id, event.target.value)
-
-      Nbsp.updateColor();
+    'change #hue': function (event) {
+      Nbsp.updateColor(event.target.value);
     }
   });
 }
