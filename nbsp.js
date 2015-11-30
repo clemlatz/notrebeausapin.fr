@@ -58,6 +58,13 @@ if (Meteor.isClient) {
       }
     });
   });
+
+  Template.card.helpers({
+    'hue': function() {
+      return ((parseInt(this.hue) / 65535) * 360)
+    }
+  });
+
 }
 
 function random(min, max)
