@@ -74,24 +74,34 @@ function random(min, max)
 
 if (Meteor.isServer) {
   Meteor.startup(function () {
-    let hueSettings = Meteor.settings.hue || Meteor.settings.public.hue;
-    if (!hueSettings) {
+    Nbsp.hueSettings = Meteor.settings.hue || Meteor.settings.public.hue;
+    if (!Nbsp.hueSettings) {
       throw new Meteor.Error(500, "Hue credentials not available.");
     }
-    Nbsp.hue = new HueBridge(hueSettings.server, hueSettings.username);
+    Nbsp.hue = new HueBridge(Nbsp.hueSettings.server, Nbsp.hueSettings.username);
   });
 
   Meteor.methods({
     createCard: function(card) {
+
+      // Add random card position
       card.position = {
         x: random(0, 100),
         y: random(0, 100),
         z: random(0, 9999),
         rotation: random(0, 60) - 30
       }
+
+      // Validate and persist card
       card.createdAt = new Date();
       check(card, Nbsp.CardSchema);
       Nbsp.Cards.insert(card);
+
+      Nbsp.hue.getLight(Nbsp.hueSettings.light_id, function(light) {
+        light.setOn();
+        light.setHue(card.hue);
+        light.blink();
+      });
     }
   });
 

@@ -1,8 +1,7 @@
 {
-  "public": {
-    "hue": {
-      "server": "192.168.0.3",
-      "username": "abcd1234"
-    }
+  "hue": {
+    "server": "192.168.0.3",
+    "username": "abcd1234",
+    "light_id": 3
   }
 }
