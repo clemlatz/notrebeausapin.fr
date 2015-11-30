@@ -8,6 +8,29 @@ Nbsp.updateColor = function(hue) {
 
 if (Meteor.isClient) {
 
+  Nbsp.hideCards = function() {
+    // $('.card').animate({
+    //   top: '50%',
+    //   left: '50%'
+    // }, {
+    //   duration: 1000
+    // });
+    $('.card').fadeOut();
+  }
+
+  Nbsp.showCards = function() {
+    $('.card').fadeIn();
+    // $('.card').each(function(index, element) {
+    //   let $element = $(element);
+    //   $element.animate({
+    //     top: $element.data('y')+'%',
+    //     left: $element.data('x')+'%'
+    //   }, {
+    //     duration: 1000
+    //   });
+    // });
+  }
+
   Meteor.subscribe("cards");
 
   Template.form.onCreated(function() {
@@ -41,6 +64,26 @@ if (Meteor.isClient) {
     }
   });
 
+  Template.form.onRendered(function() {
+    let slider = noUiSlider.create(document.getElementById('colorPicker'), {
+  		start: random(0, 65355),
+  		range: {
+  			'min': 0,
+  			'max': 65535
+  		},
+  	});
+    slider.on('start', function() {
+      Nbsp.hideCards();
+    });
+    slider.on('end', function() {
+      Nbsp.showCards();
+    });
+    slider.on('update', function(value) {
+      Nbsp.updateColor(value);
+      $('#hue').val(value);
+    });
+  })
+
   Template.cards.helpers({
     cards: function() {
       return Nbsp.Cards.find().fetch();
@@ -48,13 +91,14 @@ if (Meteor.isClient) {
   });
 
   Template.card.onRendered(function() {
-    var data = this.data;
+    let data = this.data;
+
     $(this.firstNode).animate({
       left: data.position.x + '%',
       top: data.position.y + '%',
     }, {
       progress: function(animation, progress) {
-        this.style.transform = `rotate(${ progress * data.position.rotation }deg)`
+        this.style.transform = `translate(-50%,-50%) rotate(${ progress * data.position.rotation }deg)`
       }
     });
   });
@@ -100,7 +144,7 @@ if (Meteor.isServer) {
       Nbsp.hue.getLight(Nbsp.hueSettings.light_id, function(light) {
         light.setOn();
         light.setHue(card.hue);
-        light.blink();
+        light.blink(5);
       });
     }
   });

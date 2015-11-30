@@ -17,9 +17,10 @@
 
 <template name="form">
   <form id="cardForm">
-    <p>
+    <p class="colorPicker">
       <label for="hue">Use the slide to choose a color :</label>
-      <input id="hue" type="range" min=0 max=65535 value=0>
+      <input id="hue" min=0 max=65535 value=0>
+      <div id="colorPicker"></div>
     </p>
     <p>
       <textarea id="content" placeholder="Your message" maxlength=256 required></textarea>
@@ -40,9 +41,12 @@
 </template>
 
 <template name="card">
-  <div id="card_{{ _id }}" class="card" style="
-    background-color: hsl({{ hue }}, 75%, 50%);
-  ">
+  <div id="card_{{ _id }}" class="card"
+    style="background-color: hsl({{ hue }}, 75%, 50%);"
+    data-x="{{ position.x }}"
+    data-y="{{ position.y }}"
+    data-rotation="{{ position.rotation }}"
+  >
     <p class="content">{{ content }}</p>
     <p class="from">{{ from }}</p>
   </div>
