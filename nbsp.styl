@@ -42,10 +42,27 @@ body {
 }
 
 .card {
-  height: 100px;
+  height: 200px;
   left: 50%;
+  padding: 10px;
   position: absolute;
   top: 50%;
   transform: translate(-50%, -50%);
-  width: 150px;
+  width: 250px;
+
+  .content,
+  .from {
+    background: white;
+    margin-bottom: 10px;
+    overflow: auto;
+    padding: 2px 5px;
+  }
+
+  .content {
+    height: 140px;
+  }
+
+  &:hover {
+    z-index: 10000;
+  }
 }
