@@ -125,6 +125,7 @@ if (Meteor.isServer) {
     Nbsp.hue = new HueBridge(Nbsp.hueSettings.server, Nbsp.hueSettings.username);
   });
 
+
   Meteor.methods({
     createCard: function(card) {
 
@@ -141,11 +142,12 @@ if (Meteor.isServer) {
       check(card, Nbsp.CardSchema);
       Nbsp.Cards.insert(card);
 
-      Nbsp.hue.getLight(Nbsp.hueSettings.light_id, function(light) {
+      Nbsp.hue.getLight(Nbsp.hueSettings.light_id, Meteor.bindEnvironment(function(light) {
         light.setOn();
+        light.stopColorloop();
         light.setHue(card.hue);
         light.blink(5);
-      });
+      }));
     }
   });
 
