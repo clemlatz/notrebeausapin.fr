@@ -25,7 +25,11 @@ if (Meteor.isClient) {
 
   Template.home.onCreated(function() {
     Nbsp.resetColor();
-  })
+  });
+
+  Template.thanks.onCreated(function() {
+    Nbsp.resetColor();
+  });
 
   Template.send.onCreated(function() {
     Nbsp.updateColor(0);
@@ -53,6 +57,8 @@ if (Meteor.isClient) {
       Meteor.call('createCard', card, function(error, result) {
         if (error) {
           alert(error);
+        } else {
+          FlowRouter.go("/thanks/");
         }
       });
     }
