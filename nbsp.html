@@ -3,17 +3,15 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
 </head>
 
-<body>
+<template name="layout">
+    <!-- <div class="overlay">
+      {{> cards}}
+    </div> -->
 
-  <div class="overlay">
-    {{> cards}}
-  </div>
-
-  <div class="main">
-    {{> form}}
-  </div>
-
-</body>
+    <div class="main">
+      {{> Template.dynamic template=content}}
+    </div>
+</template>
 
 <template name="form">
   <form id="cardForm">
