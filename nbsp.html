@@ -15,46 +15,37 @@
 
 <template name="home">
   <h1>Notre beau sapin</h1>
-  <p>On this site, you change the colour for our christmas tree's electric
-    lights. Send us a holiday card, pick a color, and send it ! When we receive
-    your message, the lights on our tree will blink and take the color you've
-    chosen.</p>
+  <p>{{_ "welcome-message"}}</p>
   <p>Mathilde &amp; Clément</p>
   <p class="text-center">
-    <a href="/send/" class="btn btn-default">Send us a card</a>
+    <a href="/send/" class="btn btn-default">{{_ "send-us-a-card"}}</a>
   </p>
-</template>
-
-<template name="thanks">
-  <h1>Thanks!</h1>
-  <p>We just received your message and our connected christmas tree's lights are
-    blinking right now! If you wan't to learn how it's done, this website
-    source code is available on github.</p>
-  <p>
-    <a href="https://github.com/iwazaru/notrebeausapin.fr" target="_blank">
-      Github
-    </a>
-  </p>
-  <p>Mathilde &amp; Clément</p>
 </template>
 
 <template name="send">
   <form id="cardForm">
     <p class="colorPicker">
-      <label for="hue">Use the slide to choose a color :</label>
+      <label for="hue">{{_ "use-the-slide-to-pick-a-color"}}</label>
       <input id="hue" min=0 max=65535 value=0>
       <div id="colorPicker"></div>
     </p>
     <p>
-      <textarea id="content" placeholder="Your message" maxlength=256 required></textarea>
+      <textarea id="content" placeholder="{{_ "your-message"}}" maxlength=256 required></textarea>
     </p>
     <p>
-      <input type="text" id="name" placeholder="Your name" maxlength=64 required>
+      <input type="text" id="name" placeholder="{{_ "your-name"}}" maxlength=64 required>
     </p>
     <p class="text-center">
-      <button type="submit" class="btn btn-default">Send card</button>
+      <button type="submit" class="btn btn-default">{{_ "send-card"}}</button>
     </p>
   </form>
+</template>
+
+<template name="thanks">
+  <h1>{{_ "thanks"}}</h1>
+  <p>{{{_ "thanks-message"}}}</p>
+  <p>{{_ "happy-holidays"}}</p>
+  <p>Mathilde &amp; Clément</p>
 </template>
 
 <template name="cards">

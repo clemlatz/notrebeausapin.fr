@@ -13,6 +13,12 @@ Nbsp.resetColor = function() {
 
 if (Meteor.isClient) {
 
+  Meteor.startup(function() {
+    // Set language
+    const lang = navigator.language || navigator.userLanguage;
+    TAPi18n.setLanguage(lang.substring(0,2));
+  });
+
   Nbsp.hideCards = function() {
     $('.card').fadeOut();
   }

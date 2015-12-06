@@ -1,0 +1,11 @@
+{
+  "welcome-message": "On this site, you change the colour for our christmas tree's electric lights. Send us a holiday card, pick a color, and send it ! When we receive your message, the lights on our tree will blink and take the color you've chosen.",
+  "send-us-a-card": "Send us a card!",
+  "use-the-slide-to-pick-a-color": "Use the slider to pick a color:",
+  "your-message": "Your message",
+  "your-name": "Your name",
+  "send-card": "Send card",
+  "thanks": "Thanks!",
+  "thanks-message": "We just received your message and our connected christmas tree's lights are blinking right now! If you wan't to learn how it's done, this website source code is <a href=\"https://github.com/iwazaru/notrebeausapin.fr\">available on github</a>.",
+  "happy-holidays": "Happy holidays!"
+}

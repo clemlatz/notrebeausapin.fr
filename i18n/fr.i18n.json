@@ -1,0 +1,11 @@
+{
+  "welcome-message": "Sur ce site, vous pouvez changer la couleur de la guirlande électrique de notre sapin. Écrivez-nous une carte de voeux, choisissez une couleur, et envoyez-la ! Lorsque nous recevrons votre message, la guirlande connectée de notre sapin clignotera et prendra la couleur que vous avez choisie.",
+  "send-us-a-card": "Envoyez-nous une carte !",
+  "use-the-slide-to-pick-a-color": "Utilisez le curseur pour choisir une couleur :",
+  "your-message": "Votre message",
+  "your-name": "Votre nom",
+  "send-card": "Envoyer la carte",
+  "thanks": "Merci !",
+  "thanks-message": "Nous venons juste de recevoir votre message et notre guirlande électrique clignote en ce moment même ! Si vous êtes curieux de savoir comment ça marche, le code source de ce site est <a href=\"https://github.com/iwazaru/notrebeausapin.fr\">disponible sur Github</a>.",
+  "happy-holidays": "Joyeuses fêtes !"
+}
