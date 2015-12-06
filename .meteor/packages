@@ -24,3 +24,4 @@ check
 audit-argument-checks
 kadira:flow-router
 kadira:blaze-layout
+tap:i18n
