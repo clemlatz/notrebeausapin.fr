@@ -4,16 +4,28 @@
 </head>
 
 <template name="layout">
-    <!-- <div class="overlay">
+    <div class="overlay">
       {{> cards}}
-    </div> -->
+    </div>
 
     <div class="main">
       {{> Template.dynamic template=content}}
     </div>
 </template>
 
-<template name="form">
+<template name="home">
+  <p>Welcome !</p>
+  <p>On this site, you change the colour for our christmas tree's electric
+    lights. Send us a holiday card, pick a color, and send it ! When we receive
+    your message, the lights on our tree will blink and take the color you've 
+    chosen.</p>
+  <p>Mathilde &amp; Clément</p>
+  <p class="text-center">
+    <a href="/send/" class="btn btn-default">Send us a card</a>
+  </p>
+</template>
+
+<template name="send">
   <form id="cardForm">
     <p class="colorPicker">
       <label for="hue">Use the slide to choose a color :</label>

@@ -6,44 +6,38 @@ Nbsp.updateColor = function(hue) {
   $('.overlay').css({ 'background-color': 'hsla(' + cssHue + ', 75%, 50%, .15)' });
 }
 
+Nbsp.resetColor = function() {
+  $('.main').css('background-color', '#fff');
+  $('.overlay').css('background', 'none');
+}
+
 if (Meteor.isClient) {
 
   Nbsp.hideCards = function() {
-    // $('.card').animate({
-    //   top: '50%',
-    //   left: '50%'
-    // }, {
-    //   duration: 1000
-    // });
     $('.card').fadeOut();
   }
 
   Nbsp.showCards = function() {
     $('.card').fadeIn();
-    // $('.card').each(function(index, element) {
-    //   let $element = $(element);
-    //   $element.animate({
-    //     top: $element.data('y')+'%',
-    //     left: $element.data('x')+'%'
-    //   }, {
-    //     duration: 1000
-    //   });
-    // });
   }
 
   Meteor.subscribe("cards");
 
-  Template.form.onCreated(function() {
+  Template.home.onCreated(function() {
+    Nbsp.resetColor();
+  })
+
+  Template.send.onCreated(function() {
     Nbsp.updateColor(0);
   });
 
-  Template.form.helpers({
+  Template.send.helpers({
     counter: function () {
       return Session.get('counter');
     }
   });
 
-  Template.form.events({
+  Template.send.events({
     'change #hue': function (event) {
       Nbsp.updateColor(event.target.value);
     },
@@ -64,7 +58,7 @@ if (Meteor.isClient) {
     }
   });
 
-  Template.form.onRendered(function() {
+  Template.send.onRendered(function() {
     let slider = noUiSlider.create(document.getElementById('colorPicker'), {
   		start: random(0, 65355),
   		range: {
